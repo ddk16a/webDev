@@ -31,6 +31,7 @@ app.use(session({ secret: 'hip-hop turkey', resave: false, saveUninitialized: tr
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
+/*
 //filter
 app.use('/*', (req, resp, next) => {
 	if (req.session.user || req.originalUrl == '/login' || req.originalUrl == '/sign-in')
@@ -38,10 +39,11 @@ app.use('/*', (req, resp, next) => {
 	else
 		resp.redirect('/login');
 });
-
+*/
 //url stuffs
 app.get('/', (req, resp) => resp.redirect('/dashboard'));
 
+/*
 app.get('/login', (req, resp) => resp.render('login.ejs'));
 
 app.post('/login', (req, resp) => {
@@ -80,3 +82,5 @@ io.on('connect', (socket) => {
 process.on('SIGINT', () => process.exit());
 
 process.on('exit', (code) => con.end());
+
+*/
