@@ -8,7 +8,7 @@ const session = require('express-session');
 const mysql = require('mysql');
 
 let con = mysql.createConnection({
-	host: 'mysql://be494343c33e7e:3bc88f84@us-cdbr-iron-east-02.cleardb.net/heroku_84de5b81bf6af34?reconnect=true',
+	host: 'us-cdbr-iron-east-02.cleardb.net',
 	user: 'be494343c33e7e',
 	password: '3bc88f84',
 	database: 'heroku_84de5b81bf6af34'
