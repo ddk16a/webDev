@@ -96,7 +96,14 @@ const io = require('socket.io')(server);
 let queued = null;
 
 io.on('connect', (socket) => {
-	socket.join('game', () => socket.broadcast.emit('pair'));
+	if (queued) {
+		socket.join(queued.id, () => socket.broadcast.emit('pair'));
+		queued = null;
+	}
+	else {
+		socket.join(socket.id);
+		queued = socket
+	}
 
 	socket.on('paired', () => {
 		socket.broadcast.emit('paired');
