@@ -7,12 +7,12 @@ const parser = require('body-parser');
 const session = require('express-session');
 const mysql = require('mysql');
 
-let con = mysql.createConnection({
+const con_options = {
 	host: 'us-cdbr-iron-east-02.cleardb.net',
 	user: 'be494343c33e7e',
 	password: '3bc88f84',
 	database: 'heroku_84de5b81bf6af34'
-});
+}
 
 con.connect((err) => {
 	if (err) throw err;
@@ -47,6 +47,8 @@ app.get('/', (req, resp) => resp.redirect('/dashboard'));
 app.get('/login', (req, resp) => resp.render('login.ejs'));
 
 app.post('/login', (req, resp) => {
+	let con = mysql.createConnection(con_options);
+	con.connect((err) => { if (err) throw err; });
 	let username = req.body.username, password = req.body.password;
 	let sql = "select * from users where username = ? and password = ?";
 	con.query(sql, [username, password], (err, result) => {
@@ -57,6 +59,7 @@ app.post('/login', (req, resp) => {
 		}
 		else
 			resp.redirect('/login');
+		con.end()
 	});
 });
 
