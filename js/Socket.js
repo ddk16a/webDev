@@ -44,6 +44,7 @@ socket.on('paired', () => {
 
 		stage.setupBoard(player, ally, enemy);
 
+		Stage.endTurn();
 		stage.update();
 	})();
 });
