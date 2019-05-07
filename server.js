@@ -23,7 +23,7 @@ con.connect((err) => {
 const app = express();
 app.set('views', __dirname);
 app.set('view engine', 'ejs');
-const server = app.listen(process.env.PORT);
+const server = app.listen(process.env.PORT || 8080);
 
 //midwares
 app.use(express.static(path.join(__dirname, 'js')));
