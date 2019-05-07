@@ -58,7 +58,22 @@ app.post('/login', (req, resp) => {
 
 app.get('/sign-up', (req, resp) => resp.render('sign-up.ejs'));
 
-app.get('/dashboard', (res, resp) => resp.render('index.ejs'));
+app.get('/dashboard', (req, resp) => { 
+	
+	let con = mysql.createConnection(connection_options);
+	con.connect((err) => { if (err) throw err; });
+
+	let id = req.session.user.id;
+	let sql = "select * from users where id = ?";
+	con.query(sql, [id], (err, result) => {
+		if (err) throw err;
+		if (result.length == 1) {
+			req.session.user = result[0];
+			resp.render('index.ejs',{User:req.session.user}) 
+		}
+		con.end();
+	});							 							 
+});
 
 app.get('/newaccount', (res, resp) => resp.render('newaccount.ejs'));
 
@@ -69,7 +84,7 @@ app.post('/newaccount', (req, resp) => {
 
 		con.connect((err) => { if (err) throw err; });
 
-		let sql = "insert into users (username, password) values ( ? , ? );";
+		let sql = "insert into users (username, password, mmr) values ( ? , ? , 0, 0);";
 		con.query(sql, [username, password1], (err, result) => {
 			if (err) throw err;
 			if (result.affectedRows == 1) {
@@ -110,4 +125,23 @@ io.on('connect', (socket) => {
 	socket.on('paired', () => socket.broadcast.to(socket.room).emit('paired'));
 
 	socket.on('move', (piece, dest) => socket.broadcast.to(socket.room).emit('updateBoard', piece, dest));
+	
+	socket.on('lose', (color) => socket.to(socket.room).emit("gameover", color));
+	
+	socket.on('gameclose', (id, status) => {
+		console.log("Player " + id + " called gameclose()");
+		let con = mysql.createConnection(connection_options);
+		con.connect((err) => { if (err) throw err; });
+		let sql;
+		if(status == "won")
+			sql = "update users set wins = wins + 1 where id = ?;";
+		if(status == "lost")
+			sql = "update users set losses = losses + 1 where id = ?;";
+		con.query(sql, [id], (err, result) => {
+			if (err) throw err;
+			con.end();
+		});			
+		
+	});	
+	
 });
