@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "game",
+  "description": "Run the following line to get started:\r ```\r npm install express ejs express-session socket.io mysql\r ```",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "mysql": "^2.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosephSwedlund/Game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JosephSwedlund/Game/issues"
+  },
+  "homepage": "https://github.com/JosephSwedlund/Game#readme"
+}
