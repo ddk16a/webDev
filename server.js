@@ -97,17 +97,17 @@ let queued = null;
 
 io.on('connect', (socket) => {
 	if (queued) {
-		socket.join(queued.id, () => socket.broadcast.emit('pair'));
+		socket.room = queued.room;
+		socket.join(socket.room, () => socket.broadcast.to(socket.room).emit('pair'));
 		queued = null;
 	}
 	else {
-		socket.join(socket.id);
-		queued = socket
+		socket.room = socket.id;
+		socket.join(socket.room);
+		queued = socket;
 	}
 
-	socket.on('paired', () => {
-		socket.broadcast.emit('paired');
-	});
+	socket.on('paired', () => socket.broadcast.to(socket.room).emit('paired'));
 
-	socket.on('move', (piece, dest) => socket.broadcast.emit('updateBoard', piece, dest));
+	socket.on('move', (piece, dest) => socket.broadcast.to(socket.room).emit('updateBoard', piece, dest));
 });
