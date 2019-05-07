@@ -84,7 +84,7 @@ app.post('/newaccount', (req, resp) => {
 
 		con.connect((err) => { if (err) throw err; });
 
-		let sql = "insert into users (username, password, wins, loses) values ( ? , ? , 0, 0);";
+		let sql = "insert into users (username, password, wins, losses) values ( ? , ? , 0, 0);";
 		con.query(sql, [username, password1], (err, result) => {
 			if (err) throw err;
 			if (result.affectedRows == 1) {
