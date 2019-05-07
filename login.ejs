@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <title>Signin</title>
+
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	    <!-- Bootstrap core CSS -->
+
+		 <style type="text/css">
+			.form-control:focus {
+			  border-color: #551A8B;
+			  box-shadow: inset 0 1px 1px rgba(85, 26, 139, 0.075), 0 0 8px rgba(85, 26, 139, 0.6);
+			}
+		</style>
+	</head>
+
+<body class="text-center">
+
+<div style="margin-left:35%; padding:10px;">
+
+	<div id="LogIn" style="width:300px">
+
+    	<form class="form-signin" style="margin-top:130px" method="post" action="login">
+
+    		<h2>Login</h2>
+
+    		<!-- Username Field -->
+		    <label for="inputUsername" class="sr-only">Username</label>
+		    <input type="username" name="username" id="inputUsernameLogIn" class="form-control" placeholder="Username" required autofocus>
+
+		    <!-- Password Field -->
+		    <label for="inputPassword" class="sr-only">Password</label>
+		    <input type="password" name="password" id="inputPasswordLogIn" class="form-control" placeholder="Password" required>
+		    <br>
+
+		    <!-- Submit Button -->
+	  		<button class="btn btn-lg btn-primary btn-block" type="submit" 
+	  		style="background-color:#551A8B">Log In</button>
+		</form>
+		<br>
+	</div>
+</div>
+</body>
+</html>
