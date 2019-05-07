@@ -6,10 +6,10 @@ const session = require('express-session');
 const mysql = require('mysql');
 
 const connection_options = {
-	host: 'localhost',
-	user: 'game',
-	password: 'webdev',
-	database: 'game'
+	host: 'us-cdbr-iron-east-02.cleardb.net',
+	user: 'be494343c33e7e',
+	password: '3bc88f84',
+	database: 'heroku_84de5b81bf6af34'
 }
 
 //setting up server
