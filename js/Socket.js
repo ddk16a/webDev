@@ -55,4 +55,16 @@ socket.on('updateBoard', (piece, dest) => {
 	Stage.update();
 });
 
+socket.on('gameover', (color) => {
+	console.log("A player called gameover()");
+	if(color != player){
+		alert("You've won the game!");
+		socket.emit("gameclose", document.getElementById("id").value, "won");
+	}else if(color == player){
+		alert("You've lost the game!");
+		socket.emit("gameclose", document.getElementById("id").value, "lost");
+	}else
+		alert("Uhhhhhhhhhhh oopsies");
+});
+
 export default socket;

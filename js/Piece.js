@@ -1,6 +1,7 @@
 // import Socket from './Socket.js';
 import Stage from './Stage.js';
 import Highlight from './Highlight.js';
+import Socket from './Socket.js';
 
 //constructor
 export default function Piece(row, col, color, pattern) {
@@ -34,8 +35,8 @@ p.capture = function() {
 	Piece.count[this.color]--;
 	Stage.remove(this);
 	Stage.update();
-	if(Piece.count[this.color] == 0)
-		alert("The "+this.color+" army has been defeated!");
+	if(Piece.count[this.color] < 16)
+		Socket.emit("lose", this.color);
 }
 
 //allows the piece to be moved
