@@ -29,7 +29,7 @@ socket.on('pair', () => {
 });
 
 socket.on('paired', () => {
-	$(function() {
+	(function() {
 		player = 'black';
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
@@ -45,7 +45,7 @@ socket.on('paired', () => {
 		stage.setupBoard(player, ally, enemy);
 
 		stage.update();
-	});
+	})();
 });
 
 socket.on('updateBoard', (piece, dest) => {
