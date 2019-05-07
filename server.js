@@ -14,11 +14,6 @@ const con_options = {
 	database: 'heroku_84de5b81bf6af34'
 }
 
-con.connect((err) => {
-	if (err) throw err;
-	console.log('connected to database');
-});
-
 //setting up server
 const app = express();
 app.set('views', __dirname);
