@@ -9,7 +9,7 @@ var player; //the color of the player
 
 socket.on('pair', () => {
 	socket.emit('paired');
-	$(function() {
+	(function() {
 		player = 'white';
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
@@ -25,11 +25,11 @@ socket.on('pair', () => {
 		stage.setupBoard(player, ally, enemy);
 
 		stage.update();
-	});
+	})();
 });
 
 socket.on('paired', () => {
-	$(function() {
+	(function() {
 		player = 'black';
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
@@ -44,8 +44,9 @@ socket.on('paired', () => {
 
 		stage.setupBoard(player, ally, enemy);
 
+		Stage.endTurn();
 		stage.update();
-	});
+	})();
 });
 
 socket.on('updateBoard', (piece, dest) => {
