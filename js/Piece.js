@@ -35,7 +35,7 @@ p.capture = function() {
 	Piece.count[this.color]--;
 	Stage.remove(this);
 	Stage.update();
-	if(Piece.count[this.color] < 16)
+	if(Piece.count[this.color] == 0)
 		Socket.emit("lose", this.color);
 }
 
