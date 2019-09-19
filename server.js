@@ -26,7 +26,7 @@ app.use(parser.urlencoded({ extended: true }));
 
 //filter
 app.use('/*', (req, resp, next) => {
-	if (req.session.user || req.originalUrl == '/login' || req.originalUrl == '/newaccount')
+	if (req.session.username || req.originalUrl == '/login')
 		next();
 	else
 		resp.redirect('/login');
@@ -38,72 +38,11 @@ app.get('/', (req, resp) => resp.redirect('/dashboard'));
 app.get('/login', (req, resp) => resp.render('login.ejs'));
 
 app.post('/login', (req, resp) => {
-	let con = mysql.createConnection(connection_options);
-
-	con.connect((err) => { if (err) throw err; });
-
-	let username = req.body.username, password = req.body.password;
-	let sql = "select * from users where username = ? and password = ?";
-	con.query(sql, [username, password], (err, result) => {
-		if (err) throw err;
-		if (result.length == 1) {
-			req.session.user = result[0];
-			resp.redirect('/dashboard');
-		}
-		else
-			resp.redirect('/login');
-		con.end();
-	});
+	req.session.username = req.body.username;
+	resp.redirect('/dashboard');
 });
 
-app.get('/sign-up', (req, resp) => resp.render('sign-up.ejs'));
-
-app.get('/dashboard', (req, resp) => { 
-	
-	let con = mysql.createConnection(connection_options);
-	con.connect((err) => { if (err) throw err; });
-
-	let id = req.session.user.id;
-	let sql = "select * from users where id = ?";
-	con.query(sql, [id], (err, result) => {
-		if (err) throw err;
-		if (result.length == 1) {
-			req.session.user = result[0];
-			resp.render('index.ejs',{User:req.session.user}) 
-		}
-		con.end();
-	});							 							 
-});
-
-app.get('/newaccount', (res, resp) => resp.render('newaccount.ejs'));
-
-app.post('/newaccount', (req, resp) => {
-	let username = req.body.username, password1 = req.body.password1, password2 = req.body.password2;
-	if(password1 == password2){
-		let con = mysql.createConnection(connection_options);
-
-		con.connect((err) => { if (err) throw err; });
-
-		let sql = "insert into users (username, password, wins, losses) values ( ? , ? , 0, 0);";
-		con.query(sql, [username, password1], (err, result) => {
-			if (err) throw err;
-			if (result.affectedRows == 1) {
-				let sql = "select * from users where username = ?";
-				con.query(sql, [username], (err, result) => {
-					if (err) throw err;
-					if (result.length == 1) {
-						req.session.user = result[0];
-						resp.redirect('/dashboard');
-					}else
-						resp.redirect('/newaccount');
-					con.end();
-				});
-			}else
-				resp.redirect('/newaccount');
-		});
-	}else
-	   resp.redirect('/newaccount');
-});
+app.get('/dashboard', (req, resp) => resp.render('index.ejs', { username: req.session.user }));
 
 //sockets
 const io = require('socket.io')(server);

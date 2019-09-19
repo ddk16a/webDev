@@ -12,22 +12,16 @@
 
 	<body>
 		<div class="card" style="margin: auto; float: none; margin-top: 10%; width: 320px;">
-			<div class="card-header">
-				Sign in to your account
-			</div>
+			<div class="card-header">Welcome</div>
 			<div class="card-body">
 				<form class="form-signin" method="post" action="login">
+					<div class="form-group">Please pick a name for people to see</div>
 					<div class="form-group">
-						<label for="inputUsername" class="sr-only">Username</label>
-						<input type="username" name="username" id="inputUsernameLogIn" class="form-control" placeholder="Username" required autofocus>
+						<input type="username" name="username" id="inputPasswordLogIn" class="form-control" placeholder="Password" required>
 					</div>
 					<div class="form-group">
-						<label for="inputPassword" class="sr-only">Password</label>
-						<input type="password" name="password" id="inputPasswordLogIn" class="form-control" placeholder="Password" required>
+						<button class="btn btn-success submit-button w-100" type="submit">Start</button>
 					</div>
-					<a href="newaccount" class="btn btn-outline-info">Don't have an account?</a>
-					<input type="hidden" name="action" value="login" />
-					<button class="btn btn-success submit-button" type="submit">Login</button>	
 				</form>
 			</div>
 		</div>	

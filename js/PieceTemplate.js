@@ -9,7 +9,7 @@
 import Piece from './Piece.js';
 import Highlight from './Highlight.js';
 
-function MyPiece(row, col, color) {
+export default function MyPiece(row, col, color) {
 	this.Piece_constructor(row, col, color, MyPiece.pattern);
 	this.graphics = MyPiece.graphics[color];
 }

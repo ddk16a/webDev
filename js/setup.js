@@ -9,11 +9,11 @@ $(function() {
 
 	let ally = [
 		['Pawn','Rook','Pawn','Rook','Rook','Pawn','Rook','Pawn'], //this is the bottom row
-		['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
+		['Pawn','Pawn','Pawn','Captain','Captain','Pawn','Pawn','Pawn'] //this is one above the bottom row
 	];
 	let enemy = [
 		['Pawn','Rook','Pawn','Rook','Rook','Pawn','Rook','Pawn'], //this is the top row
-		['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
+		['Pawn','Pawn','Pawn','Captain','Captain','Pawn','Pawn','Pawn'] //this is one below the top row
 	];
 
 	stage.setupBoard(player, ally, enemy);
