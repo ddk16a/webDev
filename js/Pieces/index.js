@@ -8,10 +8,10 @@ import Rook from './Rook.js';
 
 //add the pieces to the export to make them available to the stage
 export default {
-	Bishop: Bishop;
-	King: King;
-	Knight: Knight;
-	Pawn: Pawn;
-	Queen: Queen;
-	Rook: Rook;
+	Bishop: Bishop,
+	King: King,
+	Knight: Knight,
+	Pawn: Pawn,
+	Queen: Queen,
+	Rook: Rook
 };
