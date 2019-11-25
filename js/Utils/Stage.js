@@ -1,4 +1,4 @@
-import Pieces from '../Pieces';
+import Pieces from '../Pieces/index.js';
 
 //singleton object for the stage interactions
 export default function Stage(canvasID) {
