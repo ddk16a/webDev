@@ -1,5 +1,5 @@
 import Piece from './Piece.js';
-import Highlight from './Highlight.js';
+import Highlight from '../Utils/Highlight.js';
 
 //constructor
 export default function Knight(row, col, color) {

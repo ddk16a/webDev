@@ -1,7 +1,7 @@
 // import Socket from './Socket.js';
 import Stage from './Stage.js';
-import Highlight from './Highlight.js';
-import Socket from './Socket.js';
+import Highlight from '../Utils/Highlight.js';
+import Socket from '../Utils/Socket.js';
 
 //constructor
 export default function Piece(row, col, color, id) {
