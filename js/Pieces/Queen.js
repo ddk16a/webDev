@@ -1,6 +1,6 @@
 import Piece from './Piece.js';
-import Highlight from './Highlight.js';
-import Stage from '../UtilsClient/Stage.js'
+import Highlight from '../Utils/Highlight.js';
+import Stage from '../Utils/Stage.js'
 
 //constructor
 export default function Queen(row, col, color) {
