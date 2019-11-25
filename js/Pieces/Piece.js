@@ -1,5 +1,5 @@
 // import Socket from './Socket.js';
-import Stage from './Stage.js';
+import Stage from '../Utils/Stage.js';
 import Highlight from '../Utils/Highlight.js';
 import Socket from '../Utils/Socket.js';
 
