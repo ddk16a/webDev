@@ -4,11 +4,10 @@ import Highlight from '../Utils/Highlight.js';
 import Socket from '../Utils/Socket.js';
 
 //constructor
-export default function Piece(row, col, color, id) {
+export default function Piece(row, col, color) {
 	this.Shape_constructor();
 
 	this.color = color;
-	this.id = id;
 	
 	this.moveTo(row, col);
 }

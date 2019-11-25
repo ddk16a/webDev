@@ -3,8 +3,8 @@ import Highlight from '../Utils/Highlight.js';
 import Stage from '../Utils/Stage.js'
 
 //constructor
-export default function Rook(row, col, color, id) {
-	this.Piece_constructor(row, col, color, id);
+export default function Rook(row, col, color) {
+	this.Piece_constructor(row, col, color);
 	this.graphics = Rook.graphics[color];
 }
 let p = createjs.extend(Rook, Piece);
