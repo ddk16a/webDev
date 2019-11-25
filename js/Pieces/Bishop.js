@@ -28,7 +28,7 @@ p.fill = function(spaces, offsetrow, offsetcolum) {
 		j += offsetcolum;
 	}
 	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
-		spaces.push({ row: this.row+i, this.colum: this.colum+i });
+		spaces.push({ row: this.row+i, colum: this.colum+i });
 }
 
 Bishop.graphics = {
