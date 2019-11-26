@@ -17,6 +17,7 @@ var p = createjs.extend(Piece, createjs.Shape);
 //moves the piece to specified destinations
 //called by the highlights
 p.moveTo = function(row, col) {
+	Stage.remove(Stage.get(row, col));
 	this.x = col * 70;
 	this.y = row * 70;
 	this.col = col;
