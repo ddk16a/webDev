@@ -22,13 +22,14 @@ p.pattern = function() {
 }
 
 p.fill = function(spaces, dr, dc) {
-	let i = 0, j = 0;
-	do {
+	let i = dr, j = dc;
+	while (Stage.range.includes(this.row) && Stage.range.includes(this.col) && !Stage.get(this.row+i, this.col+j)) {
+		spaces.push({ row: this.row+i, col: this.col+j });
 		i += dr;
 		j += dc;
-		spaces.push({ row: this.row+i, col: this.col+j });
 	}
-	while (Stage.range.includes(this.row) && Stage.range.includes(this.col) && !Stage.get(this.row+i, this.col+j));
+	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
+		spaces.push({ row: this.row+i, col: this.col+i });
 }
 
 Bishop.graphics = {
