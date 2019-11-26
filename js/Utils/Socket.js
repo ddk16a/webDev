@@ -50,6 +50,9 @@ socket.on('paired', () => {
 });
 
 socket.on('updateBoard', (piece, dest) => {
+	let p = Stage.get(Stage.invert(dest.row), dest.col);
+	if (p)
+		Stage.remove(p);
 	Stage.get(Stage.invert(piece.row), piece.col).moveTo(Stage.invert(dest.row), dest.col);
 	Stage.startTurn();
 	Stage.update();
