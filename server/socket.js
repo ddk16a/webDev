@@ -19,7 +19,7 @@ io.on('connect', (socket) => {
 
 	socket.on('move', (piece, dest) => socket.broadcast.to(socket.room).emit('updateBoard', piece, dest));
 
-	socket.on('lost', () => socket.to(socket.room).emit('end'));
+	socket.on('lost', (color) => socket.to(socket.room).emit('end', color));
 });
 
 module.exports = io;
