@@ -11,6 +11,7 @@ socket.on('pair', () => {
 	socket.emit('paired');
 	(function() {
 		player = 'white';
+		socket.emit('lost', 'white');
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
 		let ally = [
