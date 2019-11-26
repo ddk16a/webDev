@@ -15,7 +15,7 @@ p.pattern = function() {
 	let spaces = [];
 	if (!Stage.get(piece.row - 1, piece.col)) {
 		spaces.push({ row: piece.row - 1, col: piece.col });
-		if (piece.row = piece.rowStart && Stage.get(piece.row - 2, piece.col))
+		if (piece.row == piece.rowStart && Stage.get(piece.row - 2, piece.col))
 			spaces.push({ row: piece.row - 2, col: piece.col });
 	}
 	if (Stage.get(piece.row - 1, piece.col - 1))

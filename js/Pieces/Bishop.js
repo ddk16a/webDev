@@ -29,6 +29,11 @@ p.fill = function(spaces, dr, dc) {
 		spaces.push({ row: this.row+i, col: this.col+j });
 	}
 	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j));
+<<<<<<< Updated upstream
+=======
+	// if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
+	// 	spaces.push({ row: this.row+i, col: this.col+i });
+>>>>>>> Stashed changes
 }
 
 Bishop.graphics = {
