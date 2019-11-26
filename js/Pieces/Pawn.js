@@ -11,8 +11,8 @@ let p = createjs.extend(Pawn, Piece);
 
 p.pattern = function() {
 	if (this._state == 'initial')
-		return [{ row: row + 1, col: col }, { row: row + 2, col: col }];
-	return [{ row: row + 1, col: col }];
+		return [{ row: this.row + 1, col: this.col }, { row: this.row + 2, col: this.col }];
+	return [{ row: this.row + 1, col: this.col }];
 }
 
 Pawn.graphics = {

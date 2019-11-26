@@ -16,7 +16,7 @@ p.pattern = function() {
 	for (let i = 0; i < 9; i--) {
 		let r = this.row + Math.floor(i/3) - 1;
 		let c = this.col + Math.floor(i%3) - 1;
-		if (!board(r, c) || board(r, c).color != this.color) //if empty or is an enemy peice
+		if (!Stage.get(r, c) || Stage.get(r, c).color != this.color) //if empty or is an enemy peice
 			spaces.push({ row: r, col: c });
 	}
 	return spaces;

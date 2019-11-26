@@ -23,14 +23,14 @@ p.fill = function(board, spaces, dr, dc) {
 p.pattern = function() {
 	let spaces = [];
 
-	fill(spaces, Queen.UP, Queen.LEFT);
-	fill(spaces, Queen.UP, Queen.RIGHT);
-	fill(spaces, Queen.DOWN, Queen.LEFT);
-	fill(spaces, Queen.DOWN, Queen.RIGHT);
-	fill(spaces, Queen.UP, 0);
-	fill(spaces, Queen.DOWN, 0);
-	fill(spaces, 0, Queen.LEFT);
-	fill(spaces, 0, Queen.RIGHT);
+	this.fill(spaces, Queen.UP, Queen.LEFT);
+	this.fill(spaces, Queen.UP, Queen.RIGHT);
+	this.fill(spaces, Queen.DOWN, Queen.LEFT);
+	this.fill(spaces, Queen.DOWN, Queen.RIGHT);
+	this.fill(spaces, Queen.UP, 0);
+	this.fill(spaces, Queen.DOWN, 0);
+	this.fill(spaces, 0, Queen.LEFT);
+	this.fill(spaces, 0, Queen.RIGHT);
 
 	return spaces;
 }

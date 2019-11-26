@@ -12,10 +12,10 @@ let p = createjs.extend(Bishop, Piece);
 p.pattern = function() {
 	let spaces = [];
 	
-	fill(spaces, Bishop.UP, Bishop.LEFT);
-	fill(spaces, Bishop.UP, Bishop.RIGHT);
-	fill(spaces, Bishop.DOWN, Bishop.LEFT);
-	fill(spaces, Bishop.DOWN, Bishop.RIGHT);
+	this.fill(spaces, Bishop.UP, Bishop.LEFT);
+	this.fill(spaces, Bishop.UP, Bishop.RIGHT);
+	this.fill(spaces, Bishop.DOWN, Bishop.LEFT);
+	this.fill(spaces, Bishop.DOWN, Bishop.RIGHT);
 
 	return spaces;
 }

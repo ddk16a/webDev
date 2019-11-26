@@ -1,5 +1,6 @@
 import Piece from './Piece.js';
 import Highlight from '../Utils/Highlight.js';
+import Stage from '../Utils/Stage.js';
 
 //constructor
 export default function Knight(row, col, color) {
@@ -11,21 +12,21 @@ let p = createjs.extend(Knight, Piece);
 p.pattern = function() {
 	let spaces = [];
 
-	if (!board(this.row+2, this.col+1) || board(this.row+2, this.col+1).color != this.color)
+	if (!Stage.get(this.row+2, this.col+1) || Stage.get(this.row+2, this.col+1).color != this.color)
 		spaces.push({ row: this.row + 2, col: this.col + 1 });
-	if (!board(this.row+2, this.col-1) || board(this.row+2, this.col-1).color != this.color)
+	if (!Stage.get(this.row+2, this.col-1) || Stage.get(this.row+2, this.col-1).color != this.color)
 		spaces.push({ row: this.row+2, col: this.col-1 });
-	if (!board(this.row-2, this.col+1) || board(this.row-2, this.col+1).color != this.color)
+	if (!Stage.get(this.row-2, this.col+1) || Stage.get(this.row-2, this.col+1).color != this.color)
 		spaces.push({ row: this.row-2, col: this.col+1 });
-	if (!board(this.row-2, this.col-1) || board(this.row-2, this.col-1).color != this.color)
+	if (!Stage.get(this.row-2, this.col-1) || Stage.get(this.row-2, this.col-1).color != this.color)
 		spaces.push({ row: this.row-2, col: this.col-1 });
-	if (!board(this.row+1, this.col+2) || board(this.row+1, this.col+2).color != this.color)
+	if (!Stage.get(this.row+1, this.col+2) || Stage.get(this.row+1, this.col+2).color != this.color)
 		spaces.push({ row: this.row+1, col: this.col+2 });
-	if (!board(this.row+1, this.col-2) || board(this.row+1, this.col-2).color != this.color)
+	if (!Stage.get(this.row+1, this.col-2) || Stage.get(this.row+1, this.col-2).color != this.color)
 		spaces.push({ row: this.row+1, col: this.col-2 });
-	if (!board(this.row-1, this.col+2) || board(this.row-1, this.col+2).color != this.color)
+	if (!Stage.get(this.row-1, this.col+2) || Stage.get(this.row-1, this.col+2).color != this.color)
 		spaces.push({ row: this.row-1, col: this.col+2 });
-	if (!board(this.row-1, this.col-2) || board(this.row-1, this.col-2).color != this.color)
+	if (!Stage.get(this.row-1, this.col-2) || Stage.get(this.row-1, this.col-2).color != this.color)
 		spaces.push({ row: this.row-1, col: this.col-2 });
 	
 	return spaces;

@@ -9,24 +9,24 @@ export default function Rook(row, col, color) {
 }
 let p = createjs.extend(Rook, Piece);
 
-p.fill = function(board, spaces, dr, dc) {
+p.fill = function(spaces, dr, dc) {
 	let i = dr, j = dc;
-	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !board(this.row+i, this.col+j)) {
+	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j)) {
 		spaces.push({ row: this.row+i, col: this.col+j });
 		i += dr;
 		j += dc;
 	}
-	if (board(this.row+i, this.col+j) && board(this.row+i, this.col+j).color != this.color) //if we ran into a piece
+	if (Stage.get(this.row+i, this.col+j) && Stage.get(this.row+i, this.col+j).color != this.color) //if we ran into a piece
 		spaces.push({ row: this.row+i, col: this.col+i });
 }
 
 p.pattern = function() {
 	let spaces = [];
 	
-	fill(spaces, Rook.UP, 0);
-	fill(spaces, Rook.DOWN, 0);
-	fill(spaces, 0, Rook.LEFT);
-	fill(spaces, 0, Rook.RIGHT);
+	this.fill(spaces, Rook.UP, 0);
+	this.fill(spaces, Rook.DOWN, 0);
+	this.fill(spaces, 0, Rook.LEFT);
+	this.fill(spaces, 0, Rook.RIGHT);
 
 	return spaces;
 }
