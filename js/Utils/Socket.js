@@ -54,19 +54,12 @@ socket.on('updateBoard', (piece, dest) => {
 	let p = Stage.get(Stage.invert(dest.row), Stage.invert(dest.col));
 	if (p) {
 		if (p.king)
-			socket.emit('lost', player);
+			alert("you lost. you suck");
 		Stage.remove(p);
 	}
 	Stage.get(Stage.invert(piece.row), Stage.invert(piece.col)).moveTo(Stage.invert(dest.row), Stage.invert(dest.col));
 	Stage.startTurn();
 	Stage.update();
-});
-
-socket.on('end', (color) => {
-	if (color == player)
-		alert("you won! you are amazing");
-	else
-		alert("you lost. you suck");
 });
 
 export default socket;
