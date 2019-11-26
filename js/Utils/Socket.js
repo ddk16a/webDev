@@ -14,7 +14,7 @@ socket.on('pair', () => {
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
 		let ally = [
-			['Rook','Knight','Bishop','King','Queen','Bishop','Knight','Rook'], //this is the bottom row
+			['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the bottom row
 			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
 		];
 		let enemy = [
@@ -38,7 +38,7 @@ socket.on('paired', () => {
 			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
 		];
 		let enemy = [
-			['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the top row
+			['Rook','Knight','Bishop','King','Queen','Bishop','Knight','Rook'], //this is the top row
 			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
 		];
 
