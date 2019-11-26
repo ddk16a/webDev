@@ -18,6 +18,8 @@ io.on('connect', (socket) => {
 	socket.on('paired', () => socket.broadcast.to(socket.room).emit('paired'));
 
 	socket.on('move', (piece, dest) => socket.broadcast.to(socket.room).emit('updateBoard', piece, dest));
+
+	socket.on('lost', () => socket.broadcast.to(socket.room).emit('win'));
 });
 
 module.exports = io;

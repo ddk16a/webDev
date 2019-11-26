@@ -50,22 +50,19 @@ socket.on('paired', () => {
 });
 
 socket.on('updateBoard', (piece, dest) => {
-	Stage.remove(Stage.get(Stage.invert(dest.row), dest.col));
+	let p = Stage.get(Stage.invert(dest.row), dest.col);
+	if (p) {
+		if (p.king) {
+			socket.emit("lost");
+			alert("you lost. you suck.")
+		}
+		Stage.remove(p);
+	}
 	Stage.get(Stage.invert(piece.row), piece.col).moveTo(Stage.invert(dest.row), dest.col);
 	Stage.startTurn();
 	Stage.update();
 });
 
-socket.on('gameover', (color) => {
-	console.log("A player called gameover()");
-	if(color != player){
-		alert("You've won the game!");
-		socket.emit("gameclose", document.getElementById("id").value, "won");
-	}else if(color == player){
-		alert("You've lost the game!");
-		socket.emit("gameclose", document.getElementById("id").value, "lost");
-	}else
-		alert("Uhhhhhhhhhhh oopsies");
-});
+socket.on('win', (color) => alert("You won. You are amazing!"));
 
 export default socket;

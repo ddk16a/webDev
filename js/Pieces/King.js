@@ -6,6 +6,7 @@ import Stage from '../Utils/Stage.js';
 export default function King(row, col, color) {
 	this.Piece_constructor(row, col, color);
 	this.graphics = King.graphics[color];
+	this.king = true;
 }
 let p = createjs.extend(King, Piece);
 
