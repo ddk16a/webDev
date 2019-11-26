@@ -6,7 +6,7 @@ import Stage from '../Utils/Stage.js';
 export default function Pawn(row, col, color) {
 	this.Piece_constructor(row, col, color);
 	this.graphics = Pawn.graphics[color];
-	this._state = 'initial';
+	this.rowStart = row;
 }
 let p = createjs.extend(Pawn, Piece);
 
@@ -15,7 +15,7 @@ p.pattern = function() {
 	let spaces = [];
 	if (!Stage.get(piece.row - 1, piece.col)) {
 		spaces.push({ row: piece.row - 1, col: piece.col });
-		if (piece._state == 'initial' && Stage.get(piece.row - 2, piece.col))
+		if (piece.row = piece.rowStart && Stage.get(piece.row - 2, piece.col))
 			spaces.push({ row: piece.row - 2, col: piece.col });
 	}
 	if (Stage.get(piece.row - 1, piece.col - 1))
@@ -23,16 +23,6 @@ p.pattern = function() {
 	if (Stage.get(piece.row - 1, piece.col + 1))
 		spaces.push({ row: piece.row - 1, col: piece.col + 1 });
 	return spaces;
-}
-
-p.moveTo = function(row, col) {
-	Stage.remove(Stage.get(row, col));
-	this.x = col * 70;
-	this.y = row * 70;
-	this.col = col;
-	this.row = row;
-	this.name = row+":"+col;
-	this._state = "has-moved";
 }
 
 Pawn.graphics = {
