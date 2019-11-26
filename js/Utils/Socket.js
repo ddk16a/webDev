@@ -63,6 +63,6 @@ socket.on('updateBoard', (piece, dest) => {
 	Stage.update();
 });
 
-socket.on('win', (color) => alert("You won. You are amazing!"));
+socket.on('win', () => alert("You won. You are amazing!"));
 
 export default socket;
