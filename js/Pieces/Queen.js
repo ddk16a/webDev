@@ -9,28 +9,29 @@ export default function Queen(row, col, color) {
 }
 let p = createjs.extend(Queen, Piece);
 
-p.fill = function(board, spaces, dr, dc) {
+p.fill = function(spaces, dr, dc) {
 	let i = dr, j = dc;
-	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !board(this.row+i, this.col+j)) {
+	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j)) {
 		spaces.push({ row: this.row+i, col: this.col+j });
 		i += dr;
 		j += dc;
 	}
-	if (board(this.row+i, this.col+i) && board(this.row+i, this.col+i).color != this.color) //if we ran into a piece
+	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
 		spaces.push({ row: this.row+i, col: this.col+i });
 }
 
 p.pattern = function() {
+	let piece = Highlight.target;
 	let spaces = [];
 
-	this.fill(spaces, Queen.UP, Queen.LEFT);
-	this.fill(spaces, Queen.UP, Queen.RIGHT);
-	this.fill(spaces, Queen.DOWN, Queen.LEFT);
-	this.fill(spaces, Queen.DOWN, Queen.RIGHT);
-	this.fill(spaces, Queen.UP, 0);
-	this.fill(spaces, Queen.DOWN, 0);
-	this.fill(spaces, 0, Queen.LEFT);
-	this.fill(spaces, 0, Queen.RIGHT);
+	piece.fill(spaces, Queen.UP, Queen.LEFT);
+	piece.fill(spaces, Queen.UP, Queen.RIGHT);
+	piece.fill(spaces, Queen.DOWN, Queen.LEFT);
+	piece.fill(spaces, Queen.DOWN, Queen.RIGHT);
+	piece.fill(spaces, Queen.UP, 0);
+	piece.fill(spaces, Queen.DOWN, 0);
+	piece.fill(spaces, 0, Queen.LEFT);
+	piece.fill(spaces, 0, Queen.RIGHT);
 
 	return spaces;
 }

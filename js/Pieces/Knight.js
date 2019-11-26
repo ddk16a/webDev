@@ -10,24 +10,25 @@ export default function Knight(row, col, color) {
 let p = createjs.extend(Knight, Piece);
 
 p.pattern = function() {
+	let piece = Highlight.target;
 	let spaces = [];
 
-	if (!Stage.get(this.row+2, this.col+1) || Stage.get(this.row+2, this.col+1).color != this.color)
-		spaces.push({ row: this.row + 2, col: this.col + 1 });
-	if (!Stage.get(this.row+2, this.col-1) || Stage.get(this.row+2, this.col-1).color != this.color)
-		spaces.push({ row: this.row+2, col: this.col-1 });
-	if (!Stage.get(this.row-2, this.col+1) || Stage.get(this.row-2, this.col+1).color != this.color)
-		spaces.push({ row: this.row-2, col: this.col+1 });
-	if (!Stage.get(this.row-2, this.col-1) || Stage.get(this.row-2, this.col-1).color != this.color)
-		spaces.push({ row: this.row-2, col: this.col-1 });
-	if (!Stage.get(this.row+1, this.col+2) || Stage.get(this.row+1, this.col+2).color != this.color)
-		spaces.push({ row: this.row+1, col: this.col+2 });
-	if (!Stage.get(this.row+1, this.col-2) || Stage.get(this.row+1, this.col-2).color != this.color)
-		spaces.push({ row: this.row+1, col: this.col-2 });
-	if (!Stage.get(this.row-1, this.col+2) || Stage.get(this.row-1, this.col+2).color != this.color)
-		spaces.push({ row: this.row-1, col: this.col+2 });
-	if (!Stage.get(this.row-1, this.col-2) || Stage.get(this.row-1, this.col-2).color != this.color)
-		spaces.push({ row: this.row-1, col: this.col-2 });
+	if (!Stage.get(piece.row+2, piece.col+1) || Stage.get(piece.row+2, piece.col+1).color != piece.color)
+		spaces.push({ row: piece.row + 2, col: piece.col + 1 });
+	if (!Stage.get(piece.row+2, piece.col-1) || Stage.get(piece.row+2, piece.col-1).color != piece.color)
+		spaces.push({ row: piece.row+2, col: piece.col-1 });
+	if (!Stage.get(piece.row-2, piece.col+1) || Stage.get(piece.row-2, piece.col+1).color != piece.color)
+		spaces.push({ row: piece.row-2, col: piece.col+1 });
+	if (!Stage.get(piece.row-2, piece.col-1) || Stage.get(piece.row-2, piece.col-1).color != piece.color)
+		spaces.push({ row: piece.row-2, col: piece.col-1 });
+	if (!Stage.get(piece.row+1, piece.col+2) || Stage.get(piece.row+1, piece.col+2).color != piece.color)
+		spaces.push({ row: piece.row+1, col: piece.col+2 });
+	if (!Stage.get(piece.row+1, piece.col-2) || Stage.get(piece.row+1, piece.col-2).color != piece.color)
+		spaces.push({ row: piece.row+1, col: piece.col-2 });
+	if (!Stage.get(piece.row-1, piece.col+2) || Stage.get(piece.row-1, piece.col+2).color != piece.color)
+		spaces.push({ row: piece.row-1, col: piece.col+2 });
+	if (!Stage.get(piece.row-1, piece.col-2) || Stage.get(piece.row-1, piece.col-2).color != piece.color)
+		spaces.push({ row: piece.row-1, col: piece.col-2 });
 	
 	return spaces;
 }

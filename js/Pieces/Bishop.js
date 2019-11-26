@@ -10,12 +10,13 @@ export default function Bishop(row, col, color) {
 let p = createjs.extend(Bishop, Piece);
 
 p.pattern = function() {
+	let piece = Highlight.target;
 	let spaces = [];
 	
-	this.fill(spaces, Bishop.UP, Bishop.LEFT);
-	this.fill(spaces, Bishop.UP, Bishop.RIGHT);
-	this.fill(spaces, Bishop.DOWN, Bishop.LEFT);
-	this.fill(spaces, Bishop.DOWN, Bishop.RIGHT);
+	piece.fill(spaces, Bishop.UP, Bishop.LEFT);
+	piece.fill(spaces, Bishop.UP, Bishop.RIGHT);
+	piece.fill(spaces, Bishop.DOWN, Bishop.LEFT);
+	piece.fill(spaces, Bishop.DOWN, Bishop.RIGHT);
 
 	return spaces;
 }

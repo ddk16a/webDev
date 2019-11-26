@@ -10,9 +10,10 @@ export default function Pawn(row, col, color) {
 let p = createjs.extend(Pawn, Piece);
 
 p.pattern = function() {
-	if (this._state == 'initial')
-		return [{ row: this.row + 1, col: this.col }, { row: this.row + 2, col: this.col }];
-	return [{ row: this.row + 1, col: this.col }];
+	let piece = Highlight.target;
+	if (piece._state == 'initial')
+		return [{ row: piece.row + 1, col: piece.col }, { row: piece.row + 2, col: piece.col }];
+	return [{ row: piece.row + 1, col: piece.col }];
 }
 
 Pawn.graphics = {

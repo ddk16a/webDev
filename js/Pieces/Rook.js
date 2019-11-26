@@ -21,12 +21,13 @@ p.fill = function(spaces, dr, dc) {
 }
 
 p.pattern = function() {
+	let piece = Highlight.target;
 	let spaces = [];
 	
-	this.fill(spaces, Rook.UP, 0);
-	this.fill(spaces, Rook.DOWN, 0);
-	this.fill(spaces, 0, Rook.LEFT);
-	this.fill(spaces, 0, Rook.RIGHT);
+	piece.fill(spaces, Rook.UP, 0);
+	piece.fill(spaces, Rook.DOWN, 0);
+	piece.fill(spaces, 0, Rook.LEFT);
+	piece.fill(spaces, 0, Rook.RIGHT);
 
 	return spaces;
 }
