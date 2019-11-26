@@ -1,5 +1,6 @@
 import Piece from './Piece.js';
 import Highlight from '../Utils/Highlight.js';
+import Stage from '../Utils/Stage.js';
 
 //constructor
 export default function Pawn(row, col, color) {
@@ -11,9 +12,27 @@ let p = createjs.extend(Pawn, Piece);
 
 p.pattern = function() {
 	let piece = Highlight.target;
-	if (piece._state == 'initial')
-		return [{ row: piece.row - 1, col: piece.col }, { row: piece.row - 2, col: piece.col }];
-	return [{ row: piece.row - 1, col: piece.col }];
+	let spaces = [];
+	if (!Stage.get(piece.row - 1, piece.col)) {
+		spaces.push({ row: piece.row - 1, col: piece.col });
+		if (piece._state == 'initial' && Stage.get(piece.row - 2, piece.col))
+			spaces.push({ row: piece.row - 2, col: piece.col });
+	}
+	if (Stage.get(piece.row - 1, piece.col - 1))
+		spaces.push({ row: piece.row - 1, col: piece.col - 1 });
+	if (Stage.get(piece.row - 1, piece.col + 1))
+		spaces.push({ row: piece.row - 1, col: piece.col + 1 });
+	return spaces;
+}
+
+p.moveTo = function(row, col) {
+	Stage.remove(Stage.get(row, col));
+	this.x = col * 70;
+	this.y = row * 70;
+	this.col = col;
+	this.row = row;
+	this.name = row+":"+col;
+	this._state = "has-moved";
 }
 
 Pawn.graphics = {
