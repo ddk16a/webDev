@@ -23,7 +23,7 @@ p.pattern = function() {
 
 p.fill = function(spaces, dr, dc) {
 	let i = dr, j = dc;
-	while (Stage.range.includes(this.row) && Stage.range.includes(this.col) && !Stage.get(this.row+i, this.col+j)) {
+	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j)) {
 		spaces.push({ row: this.row+i, col: this.col+j });
 		i += dr;
 		j += dc;
