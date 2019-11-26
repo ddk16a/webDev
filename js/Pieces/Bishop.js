@@ -28,7 +28,7 @@ p.fill = function(spaces, dr, dc) {
 		i += dr;
 		j += dc;
 	}
-	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
+	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color == this.color) //if we ran into a piece
 		spaces.push({ row: this.row+i, col: this.col+i });
 }
 
