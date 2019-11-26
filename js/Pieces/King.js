@@ -24,8 +24,8 @@ p.pattern = function() {
 }
 
 King.graphics = {
-	white: new createjs.Graphics().f('#FFF').drawCircle(35,35,30),
-	black: new createjs.Graphics().f('#444').drawCircle(35,35,30)
+	white: new createjs.Graphics().f('#FFF').dr(15,10,40,10).dr(20,30,30,10).dr(15,50,40,10).dr(30,10,10,50),
+	black: new createjs.Graphics().f('#444').dr(15,10,40,10).dr(20,30,30,10).dr(15,50,40,10).dr(30,10,10,50)
 }
 
 createjs.promote(King, "Piece");

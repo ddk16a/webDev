@@ -36,8 +36,8 @@ p.pattern = function() {
 }
 
 Queen.graphics = {
-	white: new createjs.Graphics().f('#FFF').drawCircle(35,35,30),
-	black: new createjs.Graphics().f('#444').drawCircle(35,35,30)
+	white: new createjs.Graphics().f('#FFF').dc(35,35,20).dc(50,20,10).dc(20,50,10),
+	black: new createjs.Graphics().f('#444').dc(35,35,20).dc(50,20,10).dc(20,50,10)
 }
 
 
