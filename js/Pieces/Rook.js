@@ -10,14 +10,13 @@ export default function Rook(row, col, color) {
 let p = createjs.extend(Rook, Piece);
 
 p.fill = function(spaces, dr, dc) {
-	let i = dr, j = dc;
-	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j)) {
-		spaces.push({ row: this.row+i, col: this.col+j });
+	let i = 0, j = 0;
+	do {
 		i += dr;
 		j += dc;
+		spaces.push({ row: this.row+i, col: this.col+j });
 	}
-	if (Stage.get(this.row+i, this.col+j) && Stage.get(this.row+i, this.col+j).color != this.color) //if we ran into a piece
-		spaces.push({ row: this.row+i, col: this.col+i });
+	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j));
 }
 
 p.pattern = function() {
