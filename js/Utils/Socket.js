@@ -53,7 +53,7 @@ socket.on('updateBoard', (piece, dest) => {
 	let p = Stage.get(Stage.invert(dest.row), Stage.invert(dest.col));
 	if (p) {
 		if (p.king) {
-			socket.emit("lost");
+			socket.emit('lost');
 			alert("you lost. you suck.")
 		}
 		Stage.remove(p);
