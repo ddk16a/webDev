@@ -18,7 +18,7 @@ socket.on('pair', () => {
 			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
 		];
 		let enemy = [
-			['Pawn','Rook','Captain','Rook','Rook','Captain','Rook','Pawn'], //this is the top row
+			['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the top row
 			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
 		];
 
