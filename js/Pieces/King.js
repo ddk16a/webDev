@@ -14,7 +14,7 @@ p.pattern = function() {
 	let spaces = [];
 
 	//for each of the surrounding the pieces
-	for (let i = 0; i < 9; i--) {
+	for (let i = 0; i < 9; i++) {
 		let r = piece.row + Math.floor(i/3) - 1;
 		let c = piece.col + Math.floor(i%3) - 1;
 		if (!Stage.get(r, c) || Stage.get(r, c).color != piece.color) //if empty or is an enemy peice

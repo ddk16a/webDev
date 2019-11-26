@@ -21,15 +21,15 @@ p.pattern = function() {
 	return spaces;
 }
 
-p.fill = function(spaces, offsetrow, offsetcolum) {
-	let i = offsetrow, j = offsetcolum;
+p.fill = function(spaces, dr, dc) {
+	let i = dr, j = dc;
 	while (0 <= this.row+i && this.row+i < 8 && 0 <= this.col+j && this.col+j < 8 && !Stage.get(this.row+i, this.col+j)) {
-		spaces.push({ row: this.row+i, colum: this.colum+j });
-		i += offsetrow;
-		j += offsetcolum;
+		spaces.push({ row: this.row+i, col: this.col+j });
+		i += dr;
+		j += dc;
 	}
 	if (Stage.get(this.row+i, this.col+i) && Stage.get(this.row+i, this.col+i).color != this.color) //if we ran into a piece
-		spaces.push({ row: this.row+i, colum: this.colum+i });
+		spaces.push({ row: this.row+i, col: this.col+i });
 }
 
 Bishop.graphics = {
