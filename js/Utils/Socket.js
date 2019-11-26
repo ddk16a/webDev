@@ -50,7 +50,7 @@ socket.on('paired', () => {
 });
 
 socket.on('updateBoard', (piece, dest) => {
-	let p = Stage.get(Stage.invert(dest.row), dest.col);
+	let p = Stage.get(Stage.invert(dest.row), Stage.invert(dest.col));
 	if (p) {
 		if (p.king) {
 			socket.emit("lost");
@@ -58,7 +58,7 @@ socket.on('updateBoard', (piece, dest) => {
 		}
 		Stage.remove(p);
 	}
-	Stage.get(Stage.invert(piece.row), piece.col).moveTo(Stage.invert(dest.row), dest.col);
+	Stage.get(Stage.invert(piece.row), Stage.invert(piece.col)).moveTo(Stage.invert(dest.row), Stage.invert(dest.col));
 	Stage.startTurn();
 	Stage.update();
 });
