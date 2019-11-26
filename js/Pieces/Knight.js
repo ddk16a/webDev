@@ -34,8 +34,8 @@ p.pattern = function() {
 }
 
 Knight.graphics = {
-	white: new createjs.Graphics().f('#FFF').setStrokeStyle(3).s("#000").drawCircle(35,35,30),
-	black: new createjs.Graphics().f('#444').setStrokeStyle(3).s("#000").drawCircle(35,35,30)
+	white: new createjs.Graphics().f('#FFF').drawRect(25,15,20,40).drawRect(15,25,40,20),
+	black: new createjs.Graphics().f('#444').drawRect(25,15,20,40).drawRect(15,25,40,20)
 }
 
 createjs.promote(Knight, "Piece");

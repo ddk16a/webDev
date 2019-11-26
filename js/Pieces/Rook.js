@@ -32,8 +32,8 @@ p.pattern = function() {
 }
 
 Rook.graphics = {
-	white: new createjs.Graphics().f('#FFF').setStrokeStyle(3).s("#000").drawRect(5,5,60,60),
-	black: new createjs.Graphics().f('#444').setStrokeStyle(3).s("#000").drawRect(5,5,60,60)
+	white: new createjs.Graphics().f('#FFF').drawRect(5,5,60,60),
+	black: new createjs.Graphics().f('#444').drawRect(5,5,60,60)
 }
 
 Rook.RIGHT = 1;

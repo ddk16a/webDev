@@ -26,8 +26,8 @@ p.pattern = function() {
 }
 
 Pawn.graphics = {
-	white: new createjs.Graphics().f('#FFF').setStrokeStyle(3).s("#000").drawCircle(35,35,30),
-	black: new createjs.Graphics().f('#444').setStrokeStyle(3).s("#000").drawCircle(35,35,30)
+	white: new createjs.Graphics().f('#FFF').drawCircle(35,35,30),
+	black: new createjs.Graphics().f('#444').drawCircle(35,35,30)
 }
 
 createjs.promote(Pawn, "Piece");
