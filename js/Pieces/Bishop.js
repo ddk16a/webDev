@@ -28,7 +28,7 @@ p.fill = function(spaces, dr, dc) {
 		j += dc;
 		spaces.push({ row: this.row+i, col: this.col+j });
 	}
-	while (Stage.range.includes(row) && Stage.range.includes(col) && Stage.get(this.row+i, this.col+j) == null);
+	while (Stage.range.includes(this.row) && Stage.range.includes(this.col) && Stage.get(this.row+i, this.col+j) == null);
 }
 
 Bishop.graphics = {
