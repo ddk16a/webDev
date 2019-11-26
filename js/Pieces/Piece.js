@@ -18,7 +18,7 @@ var p = createjs.extend(Piece, createjs.Shape);
 //called by the highlights
 p.moveTo = function(row, col) {
 	let q = Stage.get(row, col);
-	if (q.king)
+	if (q && q.king)
 		alert("you won! You are amazing!")
 	Stage.remove(q);
 	this.x = col * 70;
