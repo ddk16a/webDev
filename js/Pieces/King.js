@@ -25,8 +25,8 @@ p.pattern = function() {
 }
 
 King.graphics = {
-	white: new createjs.Graphics().f('#FFF').dr(15,10,40,10).dr(20,30,30,10).dr(15,50,40,10).dr(30,10,10,50),
-	black: new createjs.Graphics().f('#444').dr(15,10,40,10).dr(20,30,30,10).dr(15,50,40,10).dr(30,10,10,50)
+	white: new createjs.Graphics().f('#FFF').dr(10,10,15,5).dr(27.5,10,15,5).dr(45,10,15,5).dr(10,17.5,50,5).dr(17.5,25,35,20).dr(25,47.5,20,5).dr(10,55,50,5),
+	black: new createjs.Graphics().f('#444').dr(10,10,15,5).dr(27.5,10,15,5).dr(45,10,15,5).dr(10,17.5,50,5).dr(17.5,25,35,20).dr(25,47.5,20,5).dr(10,55,50,5)
 }
 
 createjs.promote(King, "Piece");
