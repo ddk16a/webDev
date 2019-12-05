@@ -3,14 +3,30 @@
 		<meta charset="utf-8">
 		<title>Board</title>
 		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		
 		<script src="socket.io/socket.io.js"></script>
 		<script type="module" src="Utils/Socket.js"></script>
 	</head>
 	<body>
-		<div style="width: 560px; margin: auto;"> 
+		<div id="can" style="width: 560px; margin: auto;" hidden> 
 			<p><%= username %></p>
 			<canvas id="myCanvas" width="560" height="560" style="border:2px solid #696969;">Your browser does not support the HTML5 canvas tag.</canvas>
+		</div>
+
+		<div id="waiter w-50" data-backdrop="static" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body text-center">
+					  <span class="m-2">Waiting on another player</span>
+						<img src="giphy.gif" style="width: 50px;">
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

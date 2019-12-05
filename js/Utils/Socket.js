@@ -1,7 +1,6 @@
 import Stage from './Stage.js';
 
 let socket = io();
-
 socket.on('connect', () => console.log('connected'));
 
 var stage; 
@@ -10,6 +9,8 @@ var player; //the color of the player
 socket.on('pair', () => {
 	socket.emit('paired');
 	(function() {
+		$('#waiter').remove();
+		$('#can').attr('hidden',false);
 		player = 'white';
 		socket.emit('lost', 'white');
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
@@ -31,6 +32,8 @@ socket.on('pair', () => {
 
 socket.on('paired', () => {
 	(function() {
+		$('#waiter').remove();
+		$('#can').attr('hidden',false);
 		player = 'black';
 		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
 
