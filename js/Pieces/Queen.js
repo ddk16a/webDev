@@ -37,7 +37,7 @@ p.pattern = function() {
 
 Queen.graphics = {
 	white: new createjs.Graphics().f('#FFF').dr(27.5,10,15,5).dr(10,17.5,50,5).dr(17.5,25,35,20).dr(25,47.5,20,5).dr(10,55,50,5),
-	black: new createjs.Graphics().f('#444').dr(27.5,10,15,5).dr(10,17.5,50,5).dr(17.5,25,35,20).dr(25,47.5,20,5).dr(10,55,50,5)
+	black: new createjs.Graphics().f('#222').dr(27.5,10,15,5).dr(10,17.5,50,5).dr(17.5,25,35,20).dr(25,47.5,20,5).dr(10,55,50,5)
 }
 
 

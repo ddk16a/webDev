@@ -14,7 +14,7 @@ const mysql = require('mysql');
 
 //setting up server
 const app = express();
-app.set('views', __dirname);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 const server = app.listen((process.env.PORT || 80),() => console.log('Server started'));
 
@@ -33,54 +33,59 @@ app.use('/*', (req, resp, next) => {
 });
 
 //url stuffs
-app.get('/', (req, resp) => resp.redirect('/dashboard'));
+app.get('/', (req, resp) => resp.redirect('/waiting'));
 
 app.get('/login', (req, resp) => resp.render('login.ejs'));
 
 app.post('/login', (req, resp) => {
 	req.session.username = req.body.username;
-	resp.redirect('/dashboard');
+	resp.redirect('/waiting');
 });
 
-app.get('/dashboard', (req, resp) => resp.render('index.ejs', { username: req.session.user }));
+app.get('/quit', (req, resp) => {
+	delete req.session;
+	resp.redirect('/login');
+});
+
+app.get('/waiting', (req, resp) => resp.render('waiting.ejs', { username: req.session.username }));
+
+app.get('/dashboard', (req, resp) => resp.render('index.ejs', { username: req.session.username, room: req.query.room, color: req.query.color }));
 
 //sockets
 const io = require('socket.io')(server);
+const waitingio = io.of('/waiting'); //for those waiting for a match
+const gameio = io.of('/game'); //for those playing the game
 
-let queued = null;
+//waitingio stuff
+	waitingio.queued = null;
+	waitingio.on('connect', (socket) => {
+		if (!waitingio.queued)
+			waitingio.queued = socket.id;
+		else {
+			waitingio.to(`${waitingio.queued}`).to(`${socket.id}`).emit('paired', waitingio.queued);
+			waitingio.queued = null; 
+		}
+		socket.on('disconnecting', () => {
+			if (waitingio.queued == socket.id) waitingio.queued = null;
+		});
+	});
 
-io.on('connect', (socket) => {
-	if (queued) {
-		socket.room = queued.room;
-		socket.join(socket.room, () => socket.broadcast.to(socket.room).emit('pair'));
-		queued = null;
-	}
-	else {
-		socket.room = socket.id;
-		socket.join(socket.room);
-		queued = socket;
-	}
 
-	socket.on('paired', () => socket.broadcast.to(socket.room).emit('paired'));
+//gameio stuff
+	gameio.on('connect', (socket) => {
+		//to connect the two players who came together
+		socket.on('identify', (room, name) => {
+			socket.room = room;
+			socket.join(room, () => gameio.to(room).emit('joined', name));
+		});
 
-	socket.on('move', (piece, dest) => socket.broadcast.to(socket.room).emit('updateBoard', piece, dest));
-	
-	socket.on('lose', (color) => socket.to(socket.room).emit("gameover", color));
-	
-	socket.on('gameclose', (id, status) => {
-		console.log("Player " + id + " called gameclose()");
-		let con = mysql.createConnection(connection_options);
-		con.connect((err) => { if (err) throw err; });
-		let sql;
-		if(status == "won")
-			sql = "update users set wins = wins + 1 where id = ?;";
-		if(status == "lost")
-			sql = "update users set losses = losses + 1 where id = ?;";
-		con.query(sql, [id], (err, result) => {
-			if (err) throw err;
-			con.end();
-		});			
-		
-	});	
-	
-});
+		socket.on('ack', (name) => socket.to(socket.room).emit('ack', name));
+
+		socket.on('paired', () => socket.broadcast.to(socket.room).emit('paired'));
+
+		socket.on('move', (piece, dest) => socket.to(socket.room).emit('updateBoard', piece, dest));
+
+		socket.on('lost', (color) => gameio.in(socket.room).emit('end', color));
+
+		socket.on('disconnect', () => socket.to(socket.room).emit('quited'));
+	});

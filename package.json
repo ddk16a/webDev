@@ -16,12 +16,12 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JosephSwedlund/Game.git"
+    "url": "git+https://github.com/ddk16a/webDev.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JosephSwedlund/Game/issues"
+    "url": "https://github.com/ddk16a/webDev/issues"
   },
-  "homepage": "https://github.com/JosephSwedlund/Game#readme"
+  "homepage": "https://github.com/ddk16a/webDev#readme"
 }

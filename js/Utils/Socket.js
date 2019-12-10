@@ -1,68 +1,57 @@
 import Stage from './Stage.js';
 
-let socket = io();
-socket.on('connect', () => console.log('connected'));
+const stage = new Stage('myCanvas'); 
+const player = $('#color').val(); //the color of the player
 
-var stage; 
-var player; //the color of the player
+let socket = io('/game');
+socket.on('connect', () => {
+	socket.emit('identify', $('#room').val(), $('#username').html());
 
-socket.on('pair', () => {
-	socket.emit('paired');
-	(function() {
-		$('#waiter').remove();
-		$('#can').attr('hidden',false);
-		player = 'white';
-		socket.emit('lost', 'white');
-		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
+	let ally = [
+		['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the bottom row
+		['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
+	];
+	let enemy = [
+		['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the top row
+		['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
+	];
 
-		let ally = [
-			['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the bottom row
-			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
-		];
-		let enemy = [
-			['Rook','Knight','Bishop','Queen','King','Bishop','Knight','Rook'], //this is the top row
-			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
-		];
-
-		stage.setupBoard(player, ally, enemy);
-
-		stage.update();
-	})();
-});
-
-socket.on('paired', () => {
-	(function() {
-		$('#waiter').remove();
-		$('#can').attr('hidden',false);
-		player = 'black';
-		stage = new Stage('myCanvas'); //pass in the canvas id to set up easeljs
-
-		let ally = [
-			['Rook','Knight','Bishop','King','Queen','Bishop','Knight','Rook'], //this is the bottom row
-			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one above the bottom row
-		];
-		let enemy = [
-			['Rook','Knight','Bishop','King','Queen','Bishop','Knight','Rook'], //this is the top row
-			['Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn','Pawn'] //this is one below the top row
-		];
-
-		stage.setupBoard(player, ally, enemy);
-
+	stage.setupBoard(player, ally, enemy);
+	if (player == 'black')
 		Stage.endTurn();
-		stage.update();
-	})();
+
+	stage.update();
 });
+
+socket.on('joined', (name, ack) => {
+	if (name != $('#username').html()) {
+		$('#opponent').html(name);
+		socket.emit('ack', $('#username').html());
+	}
+});
+
+socket.on('ack', (name) => $('#opponent').html(name));
 
 socket.on('updateBoard', (piece, dest) => {
-	let p = Stage.get(Stage.invert(dest.row), Stage.invert(dest.col));
-	if (p) {
-		if (p.king)
-			alert("you lost. you suck");
-		Stage.remove(p);
-	}
-	Stage.get(Stage.invert(piece.row), Stage.invert(piece.col)).moveTo(Stage.invert(dest.row), Stage.invert(dest.col));
+	console.log('here');
+	Stage.remove(Stage.getInv(dest.row, dest.col));
+	Stage.getInv(piece.row, piece.col).moveTo(Stage.invert(dest.row), Stage.invert(dest.col));
 	Stage.startTurn();
 	Stage.update();
 });
+
+socket.on('end', (color) => {
+	if (color == player)
+		alert('You win. And that\'s a good thing');
+	else
+		alert('You lose. That\'s pretty lame');
+	window.location.replace((confirm('Would you like to play agaim?') ? 'waiting' : 'quit'))
+});
+
+socket.on('quited', () => {
+	alert('they quit on you');
+	window.location.replace('waiting');
+});
+
 
 export default socket;

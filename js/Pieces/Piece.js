@@ -1,4 +1,3 @@
-// import Socket from './Socket.js';
 import Stage from '../Utils/Stage.js';
 import Highlight from '../Utils/Highlight.js';
 import Socket from '../Utils/Socket.js';
@@ -19,7 +18,7 @@ var p = createjs.extend(Piece, createjs.Shape);
 p.moveTo = function(row, col) {
 	let q = Stage.get(row, col);
 	if (q && q.king)
-		alert("you won! You are amazing!")
+		Socket.emit('lost', this.color);
 	Stage.remove(q);
 	this.x = col * 70;
 	this.y = row * 70;

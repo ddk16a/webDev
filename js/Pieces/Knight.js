@@ -35,7 +35,7 @@ p.pattern = function() {
 
 Knight.graphics = {
 	white: new createjs.Graphics().f('#FFF').dr(22.5,10,15,5).dr(10,12.5,10,20).dr(10,35,50,5).dr(22.5,17.5,37.5,17.5).dr(40,40,20,7.5).dr(15,42.5,20,10).dr(10,55,50,5),
-	black: new createjs.Graphics().f('#444').dr(22.5,10,15,5).dr(10,12.5,10,20).dr(10,35,50,5).dr(22.5,17.5,37.5,17.5).dr(40,40,20,7.5).dr(15,42.5,20,10).dr(10,55,50,5)
+	black: new createjs.Graphics().f('#222').dr(22.5,10,15,5).dr(10,12.5,10,20).dr(10,35,50,5).dr(22.5,17.5,37.5,17.5).dr(40,40,20,7.5).dr(15,42.5,20,10).dr(10,55,50,5)
 }
 
 createjs.promote(Knight, "Piece");

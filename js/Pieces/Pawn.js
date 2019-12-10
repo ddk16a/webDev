@@ -27,7 +27,7 @@ p.pattern = function() {
 
 Pawn.graphics = {
 	white: new createjs.Graphics().f('#FFF').dr(17.5,10,35,35).dr(25,47.5,20,5).dr(10,55,50,5),
-	black: new createjs.Graphics().f('#444').dr(17.5,10,35,35).dr(25,47.5,20,5).dr(10,55,50,5)
+	black: new createjs.Graphics().f('#222').dr(17.5,10,35,35).dr(25,47.5,20,5).dr(10,55,50,5)
 }
 
 createjs.promote(Pawn, "Piece");
