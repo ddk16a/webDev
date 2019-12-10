@@ -45,7 +45,7 @@ socket.on('end', (color) => {
 		alert('You win. And that\'s a good thing');
 	else
 		alert('You lose. That\'s pretty lame');
-	window.location.replace((confirm('Would you like to play agaim?') ? 'waiting' : 'quit'))
+	window.location.replace((confirm('Would you like to play again?') ? 'waiting' : 'quit'))
 });
 
 socket.on('quited', () => {
