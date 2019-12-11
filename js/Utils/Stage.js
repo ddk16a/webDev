@@ -33,6 +33,12 @@ Stage.get = (row, col) => { return Stage.instance.getChildByName(row+':'+col); }
 Stage.getInv = (row, col) => { return Stage.instance.getChildByName(Stage.invert(row)+':'+Stage.invert(col)); }; //retrieves an object on the stage
 Stage.update = () => Stage.instance.update(); //updates the stage
 
+Stage.queenify = (pawn) => {
+	let row = pawn.row, col = pawn.col, color = pawn.color;
+	Stage.remove(pawn);
+	Stage.add(new Pieces.Queen(row, col, color));
+}
+
 //enables piece movement
 Stage.startTurn = () => {
 	Stage.instance.children.forEach((child) => {

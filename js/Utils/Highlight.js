@@ -14,11 +14,12 @@ export default function Highlight(row, col) {
 	this.alpha = 0.4;
 
 	//click the highlighted space to move the piece
-	this.on("click",function (event) {
+	this.on("click",async function (event) {
 		let piece = Highlight.target;
-		Socket.emit('move', { row: piece.row, col: piece.col }, { row: this.row, col: this.col });
+		let row = piece.row, col = piece.col;
+		await piece.moveTo(this.row, this.col);
+		Socket.emit('move', { row: row, col: col }, { row: this.row, col: this.col });
 		Stage.endTurn();
-		piece.moveTo(this.row, this.col);
 		Highlight.revert();
 		Stage.update();
 	});

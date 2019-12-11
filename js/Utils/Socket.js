@@ -33,7 +33,6 @@ socket.on('joined', (name, ack) => {
 socket.on('ack', (name) => $('#opponent').html(name));
 
 socket.on('updateBoard', (piece, dest) => {
-	console.log('here');
 	Stage.remove(Stage.getInv(dest.row, dest.col));
 	Stage.getInv(piece.row, piece.col).moveTo(Stage.invert(dest.row), Stage.invert(dest.col));
 	Stage.startTurn();

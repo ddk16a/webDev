@@ -6,6 +6,7 @@ import Stage from '../Utils/Stage.js'
 export default function Rook(row, col, color) {
 	this.Piece_constructor(row, col, color);
 	this.graphics = Rook.graphics[color];
+	this.state = 'initial';
 }
 let p = createjs.extend(Rook, Piece);
 
@@ -29,6 +30,10 @@ p.pattern = function() {
 	piece.fill(spaces, 0, Rook.RIGHT);
 
 	return spaces;
+}
+
+p.moved = async function() {
+	this.state = 'moved';
 }
 
 Rook.graphics = {

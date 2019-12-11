@@ -7,21 +7,58 @@ export default function King(row, col, color) {
 	this.Piece_constructor(row, col, color);
 	this.graphics = King.graphics[color];
 	this.king = true;
+	this.state = 'initial';
+	this.initPos = {row: row, col: col};
 }
 let p = createjs.extend(King, Piece);
 
 p.pattern = function() {
-	let piece = Highlight.target;
 	let spaces = [];
+
+	if (this.state == 'initial') {
+		if (Stage.get(this.row, 0) && Stage.get(this.row, 0).state == 'initial') {
+			let path = true;
+			for (let i = 1; i < this.col; i++) {
+				if (Stage.get(this.row, i))
+					path = false;
+			}
+			console.log((path ? 'true' : 'false'));
+			if (path)
+				spaces.push({row: this.row, col: this.col-2});
+		}
+		if (Stage.get(this.row, 7) && Stage.get(this.row, 7).state == 'initial') {
+			let path = true;
+			for (let i = this.col+1; i < 7; i++) {
+				if (Stage.get(this.row, i))
+					path = false;
+			}
+			if (path)
+				spaces.push({row: this.row, col: this.col+2});
+		}
+	}
+
 
 	//for each of the surrounding the pieces
 	for (let i = 0; i < 9; i++) {
-		let r = piece.row + Math.floor(i/3) - 1;
-		let c = piece.col + Math.floor(i%3) - 1;
-		if (!Stage.get(r, c) || Stage.get(r, c).color != piece.color) //if empty or is an enemy peice
+		let r = this.row + Math.floor(i/3) - 1;
+		let c = this.col + Math.floor(i%3) - 1;
+		if (!Stage.get(r, c) || Stage.get(r, c).color != this.color) //if empty or is an enemy peice
 			spaces.push({ row: r, col: c });
 	}
 	return spaces;
+}
+
+p.moved = async function() {
+	if (this.state == 'initial') {
+		if (this.row == this.initPos.row) {
+			console.log([this.row, this.col]);
+			if (this.col == this.initPos.col - 2)
+				await Stage.get(this.row, 0).moveTo(this.row, this.col+1);
+			else if (this.col == this.initPos.col + 2)
+				await Stage.get(this.row, 7).moveTo(this.row, this.col-1);
+		}
+	}
+	this.state = 'moved';
 }
 
 King.graphics = {

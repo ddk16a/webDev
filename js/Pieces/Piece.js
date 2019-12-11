@@ -15,7 +15,7 @@ var p = createjs.extend(Piece, createjs.Shape);
 
 //moves the piece to specified destinations
 //called by the highlights
-p.moveTo = function(row, col) {
+p.moveTo = async function(row, col) {
 	let q = Stage.get(row, col);
 	if (q && q.king)
 		Socket.emit('lost', this.color);
@@ -25,6 +25,7 @@ p.moveTo = function(row, col) {
 	this.col = col;
 	this.row = row;
 	this.name = row+":"+col;
+	await this.moved();
 }
 
 //allows the piece to be moved
@@ -37,6 +38,8 @@ p.setAlly = function() {
 	this.setClick();
 	this.ally = true;
 }
+
+p.moved = async function() {}
 
 //handler for when the piece is clicked
 Piece.focus = function() {
