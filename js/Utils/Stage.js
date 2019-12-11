@@ -34,10 +34,8 @@ Stage.getInv = (row, col) => { return Stage.instance.getChildByName(Stage.invert
 Stage.update = () => Stage.instance.update(); //updates the stage
 
 Stage.queenify = (pawn) => {
-	let row = pawn.row, col = pawn.col, color = pawn.color, ally = pawn.ally;
-	Stage.remove(pawn);
-	if (ally) Stage.instance.addChild(new Pieces.Queen(row, col, color)).setAlly();
-	else Stage.instance.addChild(new Pieces.Queen(row, col, color));
+	let queen = Stage.add(new Pieces.Queen(pawn.row, pawn.col, pawn.color));
+	if (pawn.ally) queen.setAlly();
 }
 
 //enables piece movement
